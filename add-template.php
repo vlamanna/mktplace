@@ -16,21 +16,26 @@ if (isset($auth)) {
 	$user = User::getBy('key', $key);
 	
 	if (isset($user)) {
-		header('location: /');
+		$connected = true;
 	}
+}
+
+if (!$connected) {
+	header('location: /');
 }
 
 ?>
 <!DOCTYPE html>
-<?= Document::printHead("Start Selling", ""); ?>
+<html lang="en">
+<?= Document::printHead("Add a template", ""); ?>
 	<body>
-<?= Document::printNav(TAB_SIGNUP, $connected, ""); ?>
+<?= Document::printNav(TAB_NONE, $connected, $user['name']); ?>
 		
 		<div class="main row-fluid">
 			<div class="span4 offset4">
-				<form class="well form-horizontal" action="/action/signup" method="POST">
+				<form class="well form-horizontal" action="/action/add-template" method="POST">
 					<fieldset>
-						<legend>Start Selling!</legend>
+						<legend>Add a template!</legend>
 						<div class="control-group">
 							<label class="control-label" for="inputName">Name</label>
 							<div class="controls">
@@ -38,20 +43,14 @@ if (isset($auth)) {
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="inputEmail">Email</label>
+							<label class="control-label" for="inputPrice">Price</label>
 							<div class="controls">
-								<input type="text" id="inputEmail" name="email" placeholder="Email">
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="inputPassword">Password</label>
-							<div class="controls">
-								<input type="password" id="inputPassword" name="password" placeholder="Password">
+								<input type="text" id="inputPrice" name="price" placeholder="Price">
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" class="btn btn-primary">Sign Up</button>
+								<button type="submit" class="btn btn-primary">Add</button>
 							</div>
 						</div>
 					</fieldset>

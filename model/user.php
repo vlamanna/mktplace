@@ -12,7 +12,8 @@ class User
 		return md5($password . "MKTPLACE");
 	}
 	
-	public static function create($name, $email, $password) {
+	public static function create($name, $email, $password)
+	{
 		$userId = Mysql::insert("users", array(
 			'key'			=> self::generateKey($email),
 			'name'			=> $name,
@@ -20,21 +21,21 @@ class User
 			'password_hash'	=> self::hashPassword($password)
 		));
 		
-		return Mysql::selectOne("users", array(
-			'id'		=> $userId
-		));
+		return self::getBy('id', $userId);
 	}
 	
-	public static function authenticate($email, $password) {
-		return Mysql::selectOne("users", array(
+	public static function authenticate($email, $password)
+	{
+		return Mysql::select("users", array(
 			'email'			=> $email,
 			'password_hash'	=> self::hashPassword($password)
-		));
+		), false);
 	}
 	
-	public static function getByKey($key) {
-		return Mysql::selectOne("users", array(
-			'key'			=> $key
-		));
+	public static function getBy($key, $value)
+	{
+		return Mysql::select("users", array(
+			$key	=> $value
+		), false);
 	}
 }

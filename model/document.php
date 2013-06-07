@@ -1,9 +1,10 @@
 <?php
 
-define('TAB_DEFAULT', 0);
-define('TAB_SIGNUP', 1);
-define('TAB_SIGNIN', 2);
-define('TAB_ACCOUNT', 3);
+define('TAB_NONE', 0);
+define('TAB_HOME', 1);
+define('TAB_SIGNUP', 2);
+define('TAB_SIGNIN', 3);
+define('TAB_ACCOUNT', 4);
 
 class Document
 {

@@ -58,7 +58,7 @@ class Mysql
 		return self::$instance->insert_id;
 	}
 	
-	public static function selectOne($table, $params)
+	public static function select($table, $params, $list)
 	{
 		self::connect();
 		
@@ -68,17 +68,34 @@ class Mysql
 			$filters[] = self::quoteField($field) . " = " . self::quoteValue($value);
 		}
 		
-		$filters = implode(" AND ", $filters);
+		if (sizeof($filters) > 0) {
+			$filters = "WHERE" . implode(" AND ", $filters);
+		}
+		
+		$limit = "";
+		if (!$list) {
+			$limit = "LIMIT 1";
+		}
 		
 		$query = "
 			SELECT *
 			FROM `$table`
-			WHERE $filters
-			LIMIT 1
+			$filters
+			$limit
 		";
 		
 		$result = self::query($query);
 		
-		return $result->fetch_assoc();
+		if ($list) {
+			$results = array();
+			
+			while ($row = $result->fetch_assoc()) {
+				$results[] = $row;
+			}
+			
+			return $results;
+		} else {		
+			return $result->fetch_assoc();
+		}
 	}
 }

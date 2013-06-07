@@ -13,7 +13,7 @@ $auth = Cookie::get('auth');
 if (isset($auth)) {
 	$key = str_replace("MKTPLACE", "", base64_decode($auth));
 	
-	$user = User::getByKey($key);
+	$user = User::getBy('key', $key);
 	
 	if (isset($user)) {
 		header('location: /');
