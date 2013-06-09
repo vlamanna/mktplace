@@ -2,7 +2,7 @@
 
 class Mysql
 {
-	public static $host = '127.0.0.1';
+	public static $host = '184.72.218.96';
 	public static $user = 'root';
 	public static $password = 'makaqB11';
 	public static $db = 'mktplace';
