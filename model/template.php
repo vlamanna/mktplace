@@ -11,6 +11,25 @@ class Template
 		));
 	}
 	
+	public static function update($templateId, $name, $price)
+	{
+		Mysql::update("templates", $templateId, array(
+			'name'			=> $name,
+			'price'			=> $price
+		));
+		
+		return self::getBy('id', $userId);
+	}
+	
+	public static function delete($templateId)
+	{
+		Mysql::delete("templates", array(
+			'id'			=> $templateId
+		));
+		
+		return true;
+	}
+	
 	public static function getList($userId)
 	{
 		$filters = array();
@@ -20,5 +39,12 @@ class Template
 		}
 		
 		return Mysql::select("templates", $filters, true);
+	}
+	
+	public static function getBy($key, $value)
+	{
+		return Mysql::select("templates", array(
+			$key	=> $value
+		), false);
 	}
 }

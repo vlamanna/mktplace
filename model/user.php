@@ -24,6 +24,25 @@ class User
 		return self::getBy('id', $userId);
 	}
 	
+	public static function update($userId, $name, $email)
+	{
+		Mysql::update("users", $userId, array(
+			'name'			=> $name,
+			'email'			=> $email
+		));
+		
+		return self::getBy('id', $userId);
+	}
+	
+	public static function changePassword($userId, $password)
+	{
+		Mysql::update("users", $userId, array(
+			'password_hash'	=> self::hashPassword($password)
+		));
+		
+		return self::getBy('id', $userId);
+	}
+	
 	public static function authenticate($email, $password)
 	{
 		return Mysql::select("users", array(

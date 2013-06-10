@@ -34,7 +34,6 @@ class Mysql
 	
 	public static function insert($table, $params)
 	{
-		var_dump($params);
 		self::connect();
 		
 		$fields = array();
@@ -56,6 +55,54 @@ class Mysql
 		self::query($query);
 		
 		return self::$instance->insert_id;
+	}
+	
+	public static function update($table, $id, $params)
+	{
+		self::connect();
+		
+		$values = array();
+		
+		foreach ($params as $field => $value) {
+			$values[] = self::quoteField($field) . " = " . self::quoteValue($value);
+		}
+		
+		$values = implode(",", $values);
+		
+		$id = self::quoteValue($id);
+		
+		$query = "
+			UPDATE `$table`
+			SET $values
+			WHERE `id` = $id
+		";
+		
+		self::query($query);
+		
+		return true;
+	}
+	
+	public static function delete($table, $params)
+	{
+		self::connect();
+		
+		$filters = array();
+		
+		foreach ($params as $field => $value) {
+			$filters[] = self::quoteField($field) . " = " . self::quoteValue($value);
+		}
+		
+		$filters = implode(" AND ", $filters);
+		
+		$query = "
+			DELETE
+			FROM `$table`
+			WHERE $filters
+		";
+		
+		self::query($query);
+		
+		return true;
 	}
 	
 	public static function select($table, $params, $list)

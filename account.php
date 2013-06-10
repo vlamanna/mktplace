@@ -53,8 +53,9 @@ $templates = Template::getList($user['id']);
 <?php else: ?>
 <?php foreach ($templates as $template): ?>
 						<div class="span2 well">
-							<p><b><?= $template['name']; ?></b></p>
+							<p><a href="/template/<?= $template['id']; ?>"><b><?= $template['name']; ?></b></a></p>
 							<p>$<?= ($template['price'] / 100); ?></p>
+							<p><a href="/edit-template/<?= $template['id']; ?>">Edit</a> | <a href="/delete-template/<?= $template['id']; ?>">Delete</a></p>
 						</div>
 <?php endforeach; ?>
 <?php endif; ?>

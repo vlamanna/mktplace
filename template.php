@@ -21,23 +21,20 @@ if (isset($auth)) {
 	}
 }
 
-$templates = Template::getList(null);
+$templateId = str_replace('/template/', '', $_SERVER['REQUEST_URI']);
+$template = Template::getBy('id', $templateId);
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?= Document::printHead("Home", ""); ?>
+<?= Document::printHead($template['name'], ""); ?>
 	<body>
-<?= Document::printNav(TAB_HOME, $connected, $user['name']); ?>
+<?= Document::printNav(TAB_NONE, $connected, $user['name']); ?>
 		
 		<div class="main row-fluid">
 			<div class="span10 offset1">
-<?php foreach ($templates as $template): ?>
-				<div class="span2 well">
-					<p><a href="/template/<?= $template['id']; ?>"><b><?= $template['name']; ?></b></a></p>
-					<p>$<?= ($template['price'] / 100); ?></p>
-				</div>
-<?php endforeach; ?>
+				<h2><?= $template['name']; ?></h2>
+				<p>$<?= ($template['price']/100); ?></p>
 			</div>
 		</div>
 		

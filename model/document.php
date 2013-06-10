@@ -106,6 +106,7 @@ HTML;
 								<a href="#" class="dropdow-toggle" data-toggle="dropdown">$username <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li>
+										<a href="/profile">Profile</a>
 										<a href="action/signout">Sign Out</a>
 									</li>
 								</ul>
