@@ -23,6 +23,7 @@ class Document
 		<link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
 		<link href="/css/font-awesome.min.css" rel="stylesheet">
 		<link href="/css/mktplace.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 		
 		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
@@ -80,7 +81,6 @@ HTML;
 		echo <<< HTML
 		<div class="row-fluid nav-dark">
 			<div class="container">
-				<div class="row">
 					<div class="span12">
 					<div class="navbar">
 					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -118,7 +118,6 @@ HTML;
 					</div>
 					</div>
 					</div>
-				</div>
 			</div>
 		</div>
 HTML;
@@ -163,6 +162,23 @@ HTML;
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/mktplace.js"></script>
+		
+		<script>
+		$(document).ready(function() {
+			$('.template-preview a').on('mouseover', function() {
+				$(this).parent().find('img').stop(true, true).animate({
+					opacity:.6
+				}, 250);
+				$(this).parent().find('i').stop(true, true).fadeIn(250);
+			});
+			$('.template-preview a').on('mouseout', function() {
+				$(this).parent().find('img').stop(true, true).animate({
+					opacity:1
+				}, 250);				
+				$(this).parent().find('i').stop(true, true).fadeOut(250);
+			});
+		});
+		</script>
 HTML;
 	}
 }

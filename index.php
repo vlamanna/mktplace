@@ -32,8 +32,8 @@ $templates = Template::getList(null);
 	
 		<div class="container">
 		
-		<div class="subnav row">
-			<div class="span12 navbar">
+		<div class="subnav clearfix">
+			<div class="navbar">
 				<ul class="nav">
 					<li><a href="#">Bootstrap Themes</a></li>
 					<li><a href="#">Email Templates</a></li>
@@ -43,15 +43,87 @@ $templates = Template::getList(null);
 			</div>
 		</div>
 		
-		<div class="main row">
-			<div class="span10">
+		<div class="row">
 <?php foreach ($templates as $template): ?>
-				<div class="span2">
-					<p><a href="/template/<?= $template['id']; ?>"><b><?= $template['name']; ?></b></a></p>
-					<p>$<?= ($template['price'] / 100); ?></p>
+				<div class="span4">
+					<div class="padding-10 template-box">
+						<div class="template-preview">
+							<a href="#" class="button"></a>
+							<img src="http://lorempixel.com/560/280/" width="280" height="140" />
+							<i class="icon-zoom-in"></i>
+						</div>
+						<div class="template-title">
+						<a href="/template/<?= $template['id']; ?>"><?= $template['name']; ?></a><br/>
+						<span class="template-author">By Emma Watson</span>
+					</div>
+						<div class="template-buy">
+							<a href="#" class="button"></a>
+							<i class="icon-shopping-cart"></i> $<?= ($template['price'] / 100); ?>
+						</div>
+						<div class="clearfix"></div>
+					</div>
 				</div>
 <?php endforeach; ?>
-			</div>
+<?php foreach ($templates as $template): ?>
+				<div class="span4">
+					<div class="padding-10 template-box">
+						<div class="template-preview">
+							<a href="#" class="button"></a>
+							<img src="http://lorempixel.com/560/280/" width="280" height="140" />
+							<i class="icon-zoom-in"></i>
+						</div>
+						<div class="template-title">
+						<a href="/template/<?= $template['id']; ?>"><?= $template['name']; ?></a><br/>
+						<span class="template-author">By Emma Watson</span>
+					</div>
+						<div class="template-buy">
+							<a href="#" class="button"></a>
+							<i class="icon-shopping-cart"></i> $<?= ($template['price'] / 100); ?>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+<?php endforeach; ?>
+<?php foreach ($templates as $template): ?>
+				<div class="span4">
+					<div class="padding-10 template-box">
+						<div class="template-preview">
+							<a href="#" class="button"></a>
+							<img src="http://lorempixel.com/560/280/" width="280" height="140" />
+							<i class="icon-zoom-in"></i>
+						</div>
+						<div class="template-title">
+						<a href="/template/<?= $template['id']; ?>"><?= $template['name']; ?></a><br/>
+						<span class="template-author">By Emma Watson</span>
+					</div>
+						<div class="template-buy">
+							<a href="#" class="button"></a>
+							<i class="icon-shopping-cart"></i> $<?= ($template['price'] / 100); ?>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+<?php endforeach; ?>
+<?php foreach ($templates as $template): ?>
+				<div class="span4">
+					<div class="padding-10 template-box">
+						<div class="template-preview">
+							<a href="#" class="button"></a>
+							<img src="http://lorempixel.com/560/280/" width="280" height="140" />
+							<i class="icon-zoom-in"></i>
+						</div>
+						<div class="template-title">
+						<a href="/template/<?= $template['id']; ?>"><?= $template['name']; ?></a><br/>
+						<span class="template-author">By Emma Watson</span>
+					</div>
+						<div class="template-buy">
+							<a href="#" class="button"></a>
+							<i class="icon-shopping-cart"></i> $<?= ($template['price'] / 100); ?>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+<?php endforeach; ?>
 		</div>
 
 		
