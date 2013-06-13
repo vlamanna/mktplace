@@ -43,6 +43,8 @@ $template = Template::getBy('id', $templateId);
 						data-currency="USD"
 						data-amount="<?= ($template['price']/100); ?>"
 						data-callback="http://themeup.co/ipn"
+						data-return="http://themup.co/thank-you"
+						data-cancel_return="http://themeup.co/template/<?= $template['id']; ?>"
 					></script>
 				</p>
 			</div>
