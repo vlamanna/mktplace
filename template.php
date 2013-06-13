@@ -35,6 +35,15 @@ $template = Template::getBy('id', $templateId);
 			<div class="span10 offset1">
 				<h2><?= $template['name']; ?></h2>
 				<p>$<?= ($template['price']/100); ?></p>
+				<p>
+					<script src="/js/paypal-button.min.js?merchant=vincent_lamanna@hotmail.com"
+						data-button="buynow"
+						data-name="<?= $template['name']; ?>"
+						data-number="<?= $template['id']; ?>"
+						data-currency="USD"
+						data-amount="<?= ($template['price']/100); ?>"
+					></script>
+				</p>
 			</div>
 		</div>
 		

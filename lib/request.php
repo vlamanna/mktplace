@@ -10,4 +10,9 @@ class Request
 		
 		return null;
 	}
+	
+	public static function getParams()
+	{
+		return $_POST;
+	}
 }

@@ -47,4 +47,13 @@ class Template
 			$key	=> $value
 		), false);
 	}
+	
+	public static function buy($templateId, $userId, $amount)
+	{
+		Mysql::insert("purchases", array(
+			'template_id'	=> $templateId,
+			'user_id'		=> $userId,
+			'amount'		=> $amount
+		));
+	}
 }
