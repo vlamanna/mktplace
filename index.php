@@ -59,7 +59,7 @@ if (!$connected) {
 				<div class="span4">
 					<div class="padding-10 template-box">
 						<div class="template-preview">
-							<a href="#" class="button"></a>
+							<a href="/template/<?= $template['id'] . "-" . str_replace(" ", "-", strtolower($template['name'])); ?>" class="button"></a>
 							<img src="http://lorempixel.com/560/280/" width="280" height="140" />
 							<i class="icon-zoom-in"></i>
 						</div>
