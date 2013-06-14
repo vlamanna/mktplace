@@ -26,6 +26,11 @@ $templates = Template::getList(null, null);
 
 $categories = Category::getList();
 
+if (!$connected) {
+	$user = array(
+		'name'	=> ""
+	);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -141,3 +141,6 @@ a.button {
 	display: block;
 	z-index: 100;
 }
+.hide {
+	display: none !important;
+}
