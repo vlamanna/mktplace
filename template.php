@@ -22,6 +22,8 @@ if (isset($auth)) {
 }
 
 $templateId = str_replace('/template/', '', $_SERVER['REQUEST_URI']);
+$templateId = explode("-", $templateId);
+$templateId = $templateId[0];
 $template = Template::getBy('id', $templateId);
 
 ?>

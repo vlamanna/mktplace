@@ -50,6 +50,7 @@ $categories = Category::getList();
 		</div>
 		
 		<div class="row">
+			<h1><?= $currentCategory['name']; ?></h1>
 <?php foreach ($templates as $template): ?>
 <?php
 	$templateOwner = User::getBy('id', $template['user_id']);
@@ -62,7 +63,7 @@ $categories = Category::getList();
 							<i class="icon-zoom-in"></i>
 						</div>
 						<div class="template-title">
-						<a href="/template/<?= $template['id']; ?>"><?= $template['name']; ?></a><br/>
+						<a href="/template/<?= $template['id'] . "-" . str_replace(" ", "-", strtolower($template['name'])); ?>"><?= $template['name']; ?></a><br/>
 						<span class="template-author">By <?= $templateOwner['name']; ?></span>
 					</div>
 						<div class="template-buy">

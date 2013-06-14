@@ -53,7 +53,7 @@ $templates = Template::getList($user['id'], null);
 <?php else: ?>
 <?php foreach ($templates as $template): ?>
 						<div class="span2 well">
-							<p><a href="/template/<?= $template['id']; ?>"><b><?= $template['name']; ?></b></a></p>
+							<p><a href="/template/<?= $template['id'] . "-" . str_replace(" ", "-", strtolower($template['name'])); ?>"><b><?= $template['name']; ?></b></a></p>
 							<p>$<?= ($template['price'] / 100); ?></p>
 							<p><a href="/edit-template/<?= $template['id']; ?>">Edit</a> | <a href="/delete-template/<?= $template['id']; ?>">Delete</a></p>
 						</div>
