@@ -5,6 +5,7 @@ require_once('lib/mysql.php');
 
 require_once('model/user.php');
 require_once('model/document.php');
+require_once('model/category.php');
 
 $connected = false;
 
@@ -24,6 +25,8 @@ if (!$connected) {
 	header('location: /');
 }
 
+$categories = Category::getList();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +39,16 @@ if (!$connected) {
 				<form class="well form-horizontal" action="/action/add-template" method="POST">
 					<fieldset>
 						<legend>Add a template!</legend>
+						<div class="control-group">
+							<label class="control-label" for="inputCategory">Category</label>
+							<div class="controls">
+								<select id="inputCategory" name="category">
+<?php foreach ($categories as $category): ?>
+									<option value="<?= $category['id']; ?>"><?= $category['name']; ?></option>
+<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
 						<div class="control-group">
 							<label class="control-label" for="inputName">Name</label>
 							<div class="controls">

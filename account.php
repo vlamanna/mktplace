@@ -25,7 +25,7 @@ if (!$connected) {
 	header('location: /');
 }
 
-$templates = Template::getList($user['id']);
+$templates = Template::getList($user['id'], null);
 
 ?>
 <!DOCTYPE html>

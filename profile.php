@@ -25,8 +25,6 @@ if (!$connected) {
 	header('location: /');
 }
 
-$templates = Template::getList($user['id']);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -22,7 +22,10 @@ if (isset($auth)) {
 	}
 }
 
-$templates = Template::getList(null, null);
+$categoryName = str_replace('/category/', '', $_SERVER['REQUEST_URI']);
+$currentCategory = Category::getBy('name', str_replace("-", " ", $categoryName));
+
+$templates = Template::getList(null, $currentCategory['id']);
 
 $categories = Category::getList();
 
@@ -38,9 +41,9 @@ $categories = Category::getList();
 		<div class="subnav clearfix">
 			<div class="navbar">
 				<ul class="nav">
-					<li class="active"><a href="/">All</a></li>
+					<li><a href="/">All</a></li>
 <?php foreach ($categories as $category): ?>
-					<li><a href="/category/<?= str_replace(" ", "-", strtolower($category['name'])); ?>"><?= $category['name']; ?></a></li>
+					<li <?= ($currentCategory['id'] == $category['id']) ? ' class="active"' : ''; ?>><a href="/category/<?= str_replace(" ", "-", strtolower($category['name'])); ?>"><?= $category['name']; ?></a></li>
 <?php endforeach; ?>
 				</ul>
 			</div>

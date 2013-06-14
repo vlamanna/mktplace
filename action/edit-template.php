@@ -28,6 +28,7 @@ if (!$connected) {
 $templateId = Request::getParam('template_id');
 $name = Request::getParam('name');
 $price = Request::getParam('price') * 100;
+$categoryId = Request::getParam('category');
 
 $template = Template::getBy('id', $templateId);
 
@@ -35,6 +36,6 @@ if ($user['id'] != $template['user_id']) {
 	header('location: /account');
 }
 
-Template::update($templateId, $name, $price);
+Template::update($templateId, $name, $price, $categoryId);
 
 header('location: /account');

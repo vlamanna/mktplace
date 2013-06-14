@@ -27,7 +27,8 @@ if (!$connected) {
 
 $name = Request::getParam('name');
 $price = Request::getParam('price') * 100;
+$categoryId = Request::getParam('category');
 
-Template::create($user['id'], $name, $price);
+Template::create($user['id'], $name, $price, $categoryId);
 
 header('location: /account');

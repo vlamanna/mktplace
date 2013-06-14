@@ -6,6 +6,7 @@ require_once('lib/mysql.php');
 require_once('model/user.php');
 require_once('model/document.php');
 require_once('model/template.php');
+require_once('model/category.php');
 
 $connected = false;
 
@@ -32,6 +33,8 @@ if ($user['id'] != $template['user_id']) {
 	header('location: /account');
 }
 
+$categories = Category::getList();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +48,16 @@ if ($user['id'] != $template['user_id']) {
 					<fieldset>
 						<legend>Edit <?= $template['name']; ?>!</legend>
 						<input type="hidden" name="template_id" value="<?= $template['id']; ?>">
+						<div class="control-group">
+							<label class="control-label" for="inputCategory">Category</label>
+							<div class="controls">
+								<select id="inputCategory" name="category">
+<?php foreach ($categories as $category): ?>
+									<option value="<?= $category['id']; ?>"<?= ($template['category_id'] == $category['id']) ? ' selected="selected"' : '' ?>><?= $category['name']; ?></option>
+<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
 						<div class="control-group">
 							<label class="control-label" for="inputName">Name</label>
 							<div class="controls">

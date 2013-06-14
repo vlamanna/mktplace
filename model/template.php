@@ -2,20 +2,22 @@
 
 class Template
 {	
-	public static function create($userId, $name, $price)
+	public static function create($userId, $name, $price, $categoryId)
 	{
 		$templateId = Mysql::insert("templates", array(
 			'user_id'		=> $userId,
 			'name'			=> $name,
-			'price'			=> $price
+			'price'			=> $price,
+			'category_id'	=> $categoryId
 		));
 	}
 	
-	public static function update($templateId, $name, $price)
+	public static function update($templateId, $name, $price, $categoryId)
 	{
 		Mysql::update("templates", $templateId, array(
 			'name'			=> $name,
-			'price'			=> $price
+			'price'			=> $price,
+			'category_id'	=> $categoryId
 		));
 		
 		return self::getBy('id', $userId);
@@ -30,12 +32,16 @@ class Template
 		return true;
 	}
 	
-	public static function getList($userId)
+	public static function getList($userId, $categoryId)
 	{
 		$filters = array();
 		
 		if (isset($userId)) {
 			$filters['user_id'] = $userId;
+		}
+		
+		if (isset($categoryId)) {
+			$filters['category_id'] = $categoryId;
 		}
 		
 		return Mysql::select("templates", $filters, true);
