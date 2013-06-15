@@ -26,9 +26,15 @@ $templateId = str_replace('/template/', '', $_SERVER['REQUEST_URI']);
 $templateId = explode("-", $templateId);
 $templateId = $templateId[0];
 $template = Template::getBy('id', $templateId);
+$templateOwner = User::getBy('id', $template['user_id']);
 
 $categories = Category::getList();
 
+if (!$connected) {
+	$user = array(
+		'name'	=> ""
+	);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +58,7 @@ $categories = Category::getList();
 		<div class="row">
 		  <div class="span12 template-info-full-preview">
 				<h2 class="padding-top-30"><?= $template['name']; ?></h2>
-				<p>By Emma Watson</p>
+				<p>By <?= $templateOwner['name']; ?></p>
 		  </div>
 		</div>
 		<div class="row">
@@ -74,7 +80,7 @@ $categories = Category::getList();
 				  <a href="#" class="button"></a>
 				  <i class="icon-usd"></i><?= ($template['price']/100); ?>
 				</div>
-				<!--
+				
 				<p>
 					<script src="/js/paypal-button.min.js?merchant=vincent_lamanna@hotmail.com"
 						data-button="buynow"
@@ -85,9 +91,10 @@ $categories = Category::getList();
 						data-callback="http://themeup.co/ipn"
 						data-return="http://themup.co/thank-you"
 						data-cancel_return="http://themeup.co/template/<?= $template['id']; ?>"
-					></script>
+					>
+					</script>
 				</p>
-				-->
+				
 				<div class="padding-top-20">
 				  Template info
 				</div>
@@ -96,7 +103,9 @@ $categories = Category::getList();
 		</div>
 		
 <?= Document::printFooter($connected); ?>
-
+		<script>
+			$('button.paypal-button').text("$<?= ($template['price']/100); ?>");
+		</script>
 		</div>
 	</body>
 </html>

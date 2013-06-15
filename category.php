@@ -29,6 +29,11 @@ $templates = Template::getList(null, $currentCategory['id']);
 
 $categories = Category::getList();
 
+if (!$connected) {
+	$user = array(
+		'name'	=> ""
+	);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
