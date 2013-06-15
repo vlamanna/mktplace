@@ -185,3 +185,32 @@ margin-top:0;
 
 .template-info-full-preview p {
 }
+
+.paypal-button button.large {
+	position: relative;
+	background: #84C752 !important;
+	color: #fff;
+	border: 0;
+	display: block;
+	padding: 14px 0 16px 0 !important;
+	float: none;
+	text-align: center;
+	font-size: 24px !important;
+	border-radius: 6px !important;
+	font-weight: 600;
+	margin-top: 0 !important;
+	width: 100%;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-style: normal;
+}
+
+.paypal-button button.large:before {
+	background: transparent;
+}
+.paypal-button button.large:after {
+	background: transparent;
+}
+
+.paypal-button button.large:hover {
+	background:#8CD158 !important;
+}

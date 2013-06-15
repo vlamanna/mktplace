@@ -76,11 +76,6 @@ if (!$connected) {
 				</div>
 		  </div>
 			<div class="span4">
-				<div class="template-buy template-full-buy">
-				  <a href="#" class="button"></a>
-				  <i class="icon-usd"></i><?= ($template['price']/100); ?>
-				</div>
-				
 				<p>
 					<script src="/js/paypal-button.min.js?merchant=vincent_lamanna@hotmail.com"
 						data-button="buynow"
@@ -104,7 +99,7 @@ if (!$connected) {
 		
 <?= Document::printFooter($connected); ?>
 		<script>
-			$('button.paypal-button').text("$<?= ($template['price']/100); ?>");
+			$('button.paypal-button').html("<i class='icon-usd'></i><?= ($template['price']/100); ?>");
 		</script>
 		</div>
 	</body>
