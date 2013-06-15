@@ -202,6 +202,7 @@ margin-top:0;
 	width: 100%;
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	font-style: normal;
+	height: 55px;
 }
 
 .paypal-button button.large:before {

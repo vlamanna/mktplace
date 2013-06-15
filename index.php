@@ -22,10 +22,6 @@ if (isset($auth)) {
 	}
 }
 
-$templates = Template::getList(null, null);
-
-$categories = Category::getList();
-
 if (!$connected) {
 	$user = array(
 		'name'	=> ""
@@ -40,43 +36,9 @@ if (!$connected) {
 	
 		<div class="container">
 		
-		<div class="subnav clearfix">
-			<div class="navbar">
-				<ul class="nav">
-					<li class="active"><a href="/">All</a></li>
-<?php foreach ($categories as $category): ?>
-					<li><a href="/category/<?= str_replace(" ", "-", strtolower($category['name'])); ?>"><?= $category['name']; ?></a></li>
-<?php endforeach; ?>
-				</ul>
-			</div>
-		</div>
+<?= Category::printAll("all"); ?>
 		
-		<div class="row">
-<?php foreach ($templates as $template): ?>
-<?php
-	$templateOwner = User::getBy('id', $template['user_id']);
-?>
-				<div class="span4">
-					<div class="padding-10 template-box">
-						<div class="template-preview">
-							<a href="/template/<?= $template['id'] . "-" . str_replace(" ", "-", strtolower($template['name'])); ?>" class="button"></a>
-							<img src="http://lorempixel.com/560/280/" width="280" height="140" />
-							<i class="icon-zoom-in"></i>
-						</div>
-						<div class="template-title">
-						<a href="/template/<?= $template['id'] . "-" . str_replace(" ", "-", strtolower($template['name'])); ?>"><?= $template['name']; ?></a><br/>
-						<span class="template-author">By <?= $templateOwner['name']; ?></span>
-					</div>
-						<div class="template-buy">
-							<a href="#" class="button"></a>
-							<i class="icon-shopping-cart"></i> $<?= ($template['price'] / 100); ?>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-<?php endforeach; ?>
-		</div>
-
+<?= Template::printAll(null, null, null); ?>
 		
 <?= Document::printFooter($connected); ?>
 

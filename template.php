@@ -28,8 +28,6 @@ $templateId = $templateId[0];
 $template = Template::getBy('id', $templateId);
 $templateOwner = User::getBy('id', $template['user_id']);
 
-$categories = Category::getList();
-
 if (!$connected) {
 	$user = array(
 		'name'	=> ""
@@ -44,21 +42,12 @@ if (!$connected) {
 		
 		<div class="container">
 		
-		<div class="subnav clearfix">
-			<div class="navbar">
-				<ul class="nav">
-					<li class="active"><a href="/">All</a></li>
-<?php foreach ($categories as $category): ?>
-					<li><a href="/category/<?= str_replace(" ", "-", strtolower($category['name'])); ?>"><?= $category['name']; ?></a></li>
-<?php endforeach; ?>
-				</ul>
-			</div>
-		</div>
+<?= Category::printAll(null); ?>
 
 		<div class="row">
 		  <div class="span12 template-info-full-preview">
 				<h2 class="padding-top-30"><?= $template['name']; ?></h2>
-				<p>By <?= $templateOwner['name']; ?></p>
+				<p>By <a href="/designer/<?= $templateOwner['id'] . "-" . str_replace(" ", "-", strtolower($templateOwner['name'])); ?>"><?= $templateOwner['name']; ?></a></p>
 		  </div>
 		</div>
 		<div class="row">
@@ -100,6 +89,14 @@ if (!$connected) {
 <?= Document::printFooter($connected); ?>
 		<script>
 			$('button.paypal-button').html("<i class='icon-usd'></i><?= ($template['price']/100); ?>");
+			$('button.paypal-button').on('mouseenter', function() {
+				$(this).data('content', $(this).html());
+				$(this).html('BUY');
+			});
+			$('button.paypal-button').on('mouseleave', function() {
+				$(this).html($(this).data('content'));
+				$(this.data('content', ''));
+			});
 		</script>
 		</div>
 	</body>

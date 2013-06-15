@@ -22,8 +22,10 @@ if (isset($auth)) {
 	}
 }
 
-$categoryName = str_replace('/category/', '', $_SERVER['REQUEST_URI']);
-$currentCategory = Category::getBy('name', str_replace("-", " ", $categoryName));
+$ownerId = str_replace('/designer/', '', $_SERVER['REQUEST_URI']);
+$ownerId = explode("-", $ownerId);
+$ownerId = $ownerId[0];
+$owner = User::getBy('id', $ownerId);
 
 if (!$connected) {
 	$user = array(
@@ -35,15 +37,15 @@ if (!$connected) {
 <html lang="en">
 <?= Document::printHead("Home", ""); ?>
 	<body>
-<?= Document::printNav(TAB_HOME, $connected, $user['name']); ?>
+<?= Document::printNav(TAB_NONE, $connected, $user['name']); ?>
 	
 		<div class="container">
 		
-<?= Category::printAll($currentCategory['id']); ?>
+<?= Category::printAll(null); ?>
 		
-		<h1><?= $currentCategory['name']; ?></h1>
+		<h1><?= $owner['name']; ?></h1>
 		
-<?= Template::printAll($currentCategory['id'], null, null); ?>
+<?= Template::printAll(null, $owner['id'], null); ?>
 		
 <?= Document::printFooter($connected); ?>
 
