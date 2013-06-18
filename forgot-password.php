@@ -23,15 +23,15 @@ if (isset($auth)) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?= Document::printHead("Sign In", ""); ?>
+<?= Document::printHead("Forgot Password", ""); ?>
 	<body>
-<?= Document::printNav(TAB_SIGNIN, $connected, ""); ?>
+<?= Document::printNav(TAB_NONE, $connected, ""); ?>
 		
 		<div class="main row-fluid">
 			<div class="span4 offset4">
-				<form class="well form-horizontal" action="/action/signin" method="POST">
+				<form class="well form-horizontal" action="/action/forgot-password" method="POST">
 					<fieldset>
-						<legend>Sign In!</legend>
+						<legend>Forgot your password?</legend>
 						<div class="control-group">
 							<label class="control-label" for="inputEmail">Email</label>
 							<div class="controls">
@@ -39,23 +39,14 @@ if (isset($auth)) {
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="inputPassword">Password</label>
 							<div class="controls">
-								<input type="password" id="inputPassword" name="password" placeholder="Password">
-							</div>
-						</div>
-						<div class="control-group">
-							<div class="controls">
-								<button type="submit" class="btn btn-primary">Sign In</button>
+								<button type="submit" class="btn btn-primary">Send Instructions</button>
 							</div>
 						</div>
 					</fieldset>
 				</form>
 				<div>
-					<p>Don't have an account? <a href="/signup">Create one now!</a></p>
-				</div>
-				<div>
-					<p>Forgot your password? <a href="/forgot-password">Reset it!</a></p>
+					<p>Remember your password? <a href="/signin">Sign in now!</a></p>
 				</div>
 			</div>
 		</div>

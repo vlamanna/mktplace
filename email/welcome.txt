@@ -1,0 +1,8 @@
+Hi {{ name }},
+
+Thanks for signing up to ThemeUp!
+
+Click this link to access your account
+<http://themeup.co>
+
+-- The ThemeUp Team

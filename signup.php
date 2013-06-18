@@ -56,6 +56,9 @@ if (isset($auth)) {
 						</div>
 					</fieldset>
 				</form>
+				<div>
+					<p>Already have an account? <a href="signin">Sign in!</a></p>
+				</div>
 			</div>
 		</div>
 		
