@@ -110,9 +110,14 @@ class Mysql
 		self::connect();
 		
 		$filters = array();
+		$orderBy = "";
 		
 		foreach ($params as $field => $value) {
-			$filters[] = self::quoteField($field) . " = " . self::quoteValue($value);
+			if ($field == "order_by") {
+				$orderBy = "ORDER BY " . self::quoteField(key($value)) . " " . current($value);
+			} else {
+				$filters[] = self::quoteField($field) . " = " . self::quoteValue($value);
+			}
 		}
 		
 		if (sizeof($filters) > 0) {
@@ -128,6 +133,7 @@ class Mysql
 			SELECT *
 			FROM `$table`
 			$filters
+			$orderBy
 			$limit
 		";
 		

@@ -7,6 +7,7 @@ require_once('model/user.php');
 require_once('model/document.php');
 require_once('model/template.php');
 require_once('model/category.php');
+require_once('model/tag.php');
 
 $connected = false;
 
@@ -23,6 +24,7 @@ if (isset($auth)) {
 }
 
 $categoryName = str_replace('/category/', '', $_SERVER['REQUEST_URI']);
+$categoryName = str_replace('/', '', $categoryName);
 $currentCategory = Category::getBy('name', str_replace("-", " ", $categoryName));
 
 if (!$connected) {
@@ -42,8 +44,15 @@ if (!$connected) {
 <?= Category::printAll($currentCategory['id']); ?>
 		
 		<h1><?= $currentCategory['name']; ?></h1>
-		
-<?= Template::printAll($currentCategory['id'], null, null); ?>
+
+			<div class="row">
+				<div class="span8">
+<?= Template::printAll($currentCategory['id'], null, null, array('creation_timestamp' => 'DESC')); ?>
+				</div>
+				<div class="span4">
+<?= Tag::printAll(TAG_NEWEST); ?>
+				</div>
+			</div>
 		
 <?= Document::printFooter($connected); ?>
 

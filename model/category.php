@@ -24,7 +24,7 @@ class Category
 		$categoryUrl = str_replace(" ", "-", strtolower($categoryName));
 		
 		return <<< HTML
-					<li$categoryClass><a href="/category/$categoryUrl">$categoryName</a></li>		
+					<li$categoryClass><a href="/category/$categoryUrl/">$categoryName</a></li>		
 HTML;
 	}
 	

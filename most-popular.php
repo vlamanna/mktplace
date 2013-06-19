@@ -44,7 +44,7 @@ if (!$connected) {
 <?= Template::printAll(null, null, null, array('creation_timestamp' => 'DESC')); ?>
 				</div>
 				<div class="span4">
-<?= Tag::printAll(TAG_NEWEST); ?>
+<?= Tag::printAll(TAG_MOST_POPULAR); ?>
 				</div>
 			</div>
 		
